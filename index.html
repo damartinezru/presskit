@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>D4 // DANAMI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Geist:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#3c475a",
+                "surface": "#131313",
+                "surface-bright": "#3a3939",
+                "error-container": "#93000a",
+                "on-surface": "#e5e2e1",
+                "inverse-on-surface": "#313030",
+                "inverse-primary": "#bb0058",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary-container": "#1f2a3b",
+                "surface-dim": "#131313",
+                "on-tertiary-fixed": "#111c2c",
+                "on-error": "#690005",
+                "surface-container-low": "#1c1b1b",
+                "on-secondary-container": "#0f6d00",
+                "primary-fixed": "#ffd9e0",
+                "primary-container": "#ff4b89",
+                "secondary-container": "#2ff801",
+                "inverse-surface": "#e5e2e1",
+                "tertiary-fixed": "#d8e3fa",
+                "surface-container-highest": "#353534",
+                "on-secondary-fixed": "#022100",
+                "on-secondary": "#053900",
+                "tertiary-fixed-dim": "#bcc7dd",
+                "on-background": "#e5e2e1",
+                "primary-fixed-dim": "#ffb1c3",
+                "surface-tint": "#ffb1c3",
+                "surface-container-high": "#2a2a2a",
+                "on-surface-variant": "#e5bcc4",
+                "background": "#131313",
+                "tertiary-container": "#8691a6",
+                "secondary": "#d7ffc5",
+                "on-error-container": "#ffdad6",
+                "surface-variant": "#353534",
+                "tertiary": "#bcc7dd",
+                "on-primary-container": "#590026",
+                "on-secondary-fixed-variant": "#095300",
+                "on-tertiary": "#263142",
+                "outline-variant": "#5c3f45",
+                "outline": "#ac878f",
+                "surface-container": "#201f1f",
+                "on-primary": "#66002c",
+                "on-primary-fixed": "#3f0019",
+                "on-primary-fixed-variant": "#8f0041",
+                "secondary-fixed-dim": "#2ae500",
+                "error": "#ffb4ab",
+                "secondary-fixed": "#79ff5b",
+                "primary": "#ffb1c3"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-desktop": "64px",
+                "stack-md": "16px",
+                "stack-sm": "8px",
+                "gutter": "24px",
+                "stack-lg": "40px",
+                "margin-mobile": "20px",
+                "unit": "4px"
+            },
+            "fontFamily": {
+                "body-md": ["Geist"],
+                "headline-lg-mobile": ["Anton"],
+                "label-mono": ["JetBrains Mono"],
+                "display-xl": ["Anton"],
+                "headline-lg": ["Anton"]
+            },
+            "fontSize": {
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "36px", "fontWeight": "400"}],
+                "label-mono": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "display-xl": ["96px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                "headline-lg": ["48px", {"lineHeight": "52px", "letterSpacing": "0.05em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #131313; color: #e5e2e1; overflow-x: hidden; }
+        .glitch-text { text-shadow: 2px 0 #2ff801, -2px 0 #ff4b89; }
+        .neo-brutal-shadow { box-shadow: 4px 4px 0px 0px rgba(47, 248, 1, 1); }
+        .neo-brutal-shadow-pink { box-shadow: 6px 6px 0px 0px rgba(255, 75, 137, 1); }
+        .noise-overlay {
+            background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .masonry { column-count: 2; column-gap: 24px; }
+        @media (min-width: 1024px) { .masonry { column-count: 3; } }
+        .skew-section { transform: skewY(-1deg); }
+        .skew-content { transform: skewY(1deg); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-on-background selection:bg-secondary selection:text-on-secondary-container">
+<div class="fixed inset-0 noise-overlay z-[100]"></div>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col items-center py-stack-lg gap-stack-md fixed left-0 top-0 h-full z-40 bg-surface-container-highest dark:bg-surface-container-highest border-r-2 border-outline shadow-[8px_0px_0px_0px_rgba(47,248,1,1)] w-20">
+<div class="mb-10 text-primary font-display-xl text-4xl">NP</div>
+<nav class="flex flex-col gap-8">
+<a class="group relative flex flex-col items-center gap-1 bg-secondary text-on-secondary-container p-2" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-mono text-[10px] uppercase">Home</span>
+</a>
+<a class="group relative flex flex-col items-center gap-1 text-on-surface-variant hover:text-secondary duration-0 hover:invert" href="#BIO">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-mono text-[10px] uppercase">Bio</span>
+</a>
+<a class="group relative flex flex-col items-center gap-1 text-on-surface-variant hover:text-secondary duration-0 hover:invert" href="#MUSIC">
+<span class="material-symbols-outlined">graphic_eq</span>
+<span class="font-label-mono text-[10px] uppercase">Tracks</span>
+</a>
+<a class="group relative flex flex-col items-center gap-1 text-on-surface-variant hover:text-secondary duration-0 hover:invert" href="#GALLERY">
+<span class="material-symbols-outlined">collections</span>
+<span class="font-label-mono text-[10px] uppercase">Press</span>
+</a>
+<a class="group relative flex flex-col items-center gap-1 text-on-surface-variant hover:text-secondary duration-0 hover:invert" href="#FLYERS">
+<span class="material-symbols-outlined">collections</span>
+<span class="font-label-mono text-[10px] uppercase">Flyers</span>
+</a>
+<a class="group relative flex flex-col items-center gap-1 text-on-surface-variant hover:text-secondary duration-0 hover:invert" href="#CONTACT">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-mono text-[10px] uppercase">Contacto</span>
+</a>
+</nav>
+<div class="mt-auto">
+<img alt="DJ Profile Close-up" class="w-12 h-12 grayscale hover:grayscale-0 border-2 border-primary transition-all cursor-pointer" data-alt="A gritty, high-contrast black and white close-up portrait of a professional underground DJ. The lighting is harsh and dramatic, emphasizing facial contours with deep shadows and bright highlights. The style is urban and industrial, consistent with a dark nightlife aesthetic featuring neon pink and electric green accents in the background environment." src="assets/logos/logo.jpeg"/>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 bg-background/90 backdrop-blur-sm border-b-2 border-primary dark:border-primary lg:pl-32">
+<div class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary italic tracking-tighter uppercase">
+            D4 -- 2026
+        </div>
+<nav class="hidden md:flex items-center gap-stack-lg font-label-mono text-label-mono uppercase tracking-tighter">
+<a class="text-on-surface dark:text-on-surface hover:text-primary hover:skew-x-2 transition-transform duration-75" href="#BIO">BIO</a>
+<a class="text-on-surface dark:text-on-surface hover:text-primary hover:skew-x-2 transition-transform duration-75" href="#MUSIC">MUSICA</a>
+<a class="text-on-surface dark:text-on-surface hover:text-primary hover:skew-x-2 transition-transform duration-75" href="#GALLERY">GALERIA</a>
+<a class="text-on-surface dark:text-on-surface hover:text-primary hover:skew-x-2 transition-transform duration-75" href="#CONTACT">BOOKING</a>
+</nav>
+<!-- <button class="bg-primary-container text-on-primary-container px-6 py-2 font-headline-lg text-lg uppercase skew-x-[-10deg] hover:skew-x-0 transition-all border-2 border-black active:translate-y-1 active:bg-secondary">
+            BOOK NOW
+        </button> -->
+</header>
+<main class="lg:ml-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale opacity-60" src="assets/thumbnail.jpeg"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop">
+<h1 class="font-display-xl text-display-xl text-white glitch-text uppercase mb-4 max-w-4xl break-words">
+                    D4NAMI
+                </h1>
+<p class="font-label-mono text-secondary text-xl mb-8 max-w-xl">
+                    [ // SYSTEM_SYNC: UNDERGROUND_FREQUENCIES_LOADED ]
+                </p>
+<div class="flex flex-wrap gap-stack-md">
+<a class="bg-secondary text-on-secondary-container px-10 py-4 font-headline-lg text-2xl neo-brutal-shadow transition-transform hover:-translate-y-1 hover:-translate-x-1 active:translate-y-0 active:translate-x-0 uppercase inline-block" href="https://soundcloud.com/d4nami/01-rec-2026-04-08?si=4634ccc67362472781b75ece72f6e0bd&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" rel="noopener noreferrer">
+                        SET MAS RECIENTE
+                    </a>
+<a class="border-2 border-primary text-primary px-10 py-4 font-headline-lg text-2xl uppercase hover:bg-primary/10 transition-colors inline-block" href="https://youtu.be/FYW4PBtjgVM?si=esNQXAb_0l4P3QBQ" target="_blank" rel="noopener noreferrer">
+                        CONVOCATORIAS
+                    </a>
+</div>
+</div>
+</section>
+<!-- BIO Section -->
+<section class="py-24 bg-surface relative skew-section" id="BIO">
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-12 skew-content">
+<div class="md:col-span-5 relative">
+<div class="absolute -top-10 -left-10 w-full h-full border-4 border-secondary/20 z-0"></div>
+<!-- <img class="w-full grayscale neo-brutal-shadow-pink relative z-10" data-alt="A powerful, grainy image of a DJ performance in an industrial concrete basement. High-contrast lighting with streaks of neon pink and electric green light beams cutting through the haze of a smoke machine. The crowd is a blurred silhouette in the foreground, creating a deep sense of atmosphere and raw energy consistent with underground techno culture." src="assets/PLAYING/terrazarad.JPG"/> -->
+<div class="absolute -top-10 -left-10 w-full h-full border-4 border-secondary/20 z-0"></div> 
+    <!-- Carousel: replace assets/carousel/*.jpg with your files later -->
+    <div class="relative z-10 neo-brutal-shadow-pink overflow-hidden">
+        <div id="bio-carousel" class="relative w-full h-[420px] md:h-[420px]">
+            <img class="carousel-slide w-full h-full object-cover absolute inset-0 transition-opacity duration-700" style="opacity:1" src="assets/PLAYING/terrazarad.JPG" alt="carousel 1"/>
+            <img class="carousel-slide w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700" src="assets/PLAYING/octava.PNG" alt="carousel 2"/>
+            <img class="carousel-slide w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700" src="assets/ACADEMY/IMG_9588.PNG" alt="carousel 3"/>
+            <img class="carousel-slide w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-700" src="assets/ACADEMY/IMG_9589.PNG" alt="carousel 4"/>
+            <button id="carousel-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-md z-20">❮</button>
+            <button id="carousel-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-md z-20">❯</button>
+
+            <div id="carousel-dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2"></div>
+        </div>
+    </div>
+</div>
+<div class="md:col-span-7 flex flex-col justify-center">
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase mb-8 border-b-4 border-primary w-fit pr-10">EL ORIGEN</h2>
+<div class="space-y-6 text-xl leading-relaxed">
+<p class="bg-surface-container-high p-6 border-l-8 border-secondary neo-brutal-shadow">
+Daniela AKA @d4nami es una DJ bogotana cuyo sonido fusiona techno, hypnotic techno, bass club, disco, indie dance y breakbeats. Egresada de MadSkills Academy y formada con Destro, Paula Vélez y Japp Beats, crea sets enérgicos e hipnóticos influenciados por Helena Hauff, Verraco, Hermeth, Nastia Reigel, Selective Response y Estella Boersma.
+<!-- <p class="bg-surface-container-lowest p-6 border-r-8 border-primary neo-brutal-shadow-pink text-on-surface-variant italic">
+                            RAIDER TECNICO 
+                            <br>
+                            MIXER: DJM 900 NEXUS HASTA V10 // XONE PX5,PX5, 92, 96
+                                     <br>      
+                            CDJ: CDJ 850 EN ADELANTE
+                        </p> -->
+<div class="grid grid-cols-2 gap-4 pt-8">
+<div class="border-2 border-outline p-4 flex items-center gap-4">
+<span class="font-label-mono text-secondary text-2xl">01+</span>
+<span class="font-label-mono text-xs uppercase">Years Underground</span>
+</div>
+<div class="border-2 border-outline p-4 flex items-center gap-4">
+<span class="font-label-mono text-secondary text-2xl">10+</span>
+<span class="font-label-mono text-xs uppercase">Sets Delivered</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MUSIC Section -->
+<!-- <section class="py-24 px-margin-mobile md:px-margin-desktop" id="MUSIC">
+<header class="flex justify-between items-end mb-16">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-secondary uppercase mb-2">AUDIO STREAM</h2>
+<p class="font-label-mono text-on-surface-variant uppercase tracking-widest">// RECENT_WORKS</p>
+</div>
+<a class="font-label-mono text-primary border-b border-primary hover:text-secondary hover:border-secondary transition-colors uppercase" href="https://www.youtube.com/@D4NAMI">Mira Youtube</a>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg"> -->
+<!-- Track Card 1 -->
+<!-- <div class="bg-surface-container border border-outline-variant p-6 group hover:border-secondary transition-colors flex flex-col gap-6">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-xs font-label-mono text-secondary uppercase mb-1 block">REC / 2026</span>
+<h3 class="font-headline-lg text-2xl uppercase group-hover:text-secondary transition-colors">YINGYANG VIDEOSET</h3>
+</div>
+<button class="w-12 h-12 bg-primary text-black flex items-center justify-center rounded-none group-hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="h-16 flex items-end gap-1 opacity-60"> -->
+<!-- Waveform mock -->
+<!-- <div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-3/4"></div>
+<div class="w-1 bg-secondary h-2/3"></div>
+<div class="w-1 bg-secondary h-full"></div>
+<div class="w-1 bg-secondary h-4/5"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-3/4"></div>
+<div class="w-1 bg-secondary h-full"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-2/3"></div>
+<div class="w-1 bg-secondary h-3/4"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-3/4"></div>
+<div class="w-1 bg-secondary h-2/3"></div>
+<div class="w-1 bg-secondary h-full"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-mono uppercase border-t border-outline-variant pt-4">
+<span>Techno / Industrial</span>
+<span>06:42</span>
+</div>
+</div> -->
+<!-- Track Card 2 -->
+<!-- <div class="bg-surface-container border border-outline-variant p-6 group hover:border-secondary transition-colors flex flex-col gap-6">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-xs font-label-mono text-secondary uppercase mb-1 block">Single / 2023</span>
+<h3 class="font-headline-lg text-2xl uppercase group-hover:text-secondary transition-colors">CORTEX LEAK</h3>
+</div>
+<button class="w-12 h-12 bg-primary text-black flex items-center justify-center rounded-none group-hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div> -->
+<!-- <div class="h-16 flex items-end gap-1 opacity-60"> -->
+<!-- Waveform mock -->
+<!-- <div class="w-1 bg-secondary h-1/3"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-2/3"></div>
+<div class="w-1 bg-secondary h-4/5"></div>
+<div class="w-1 bg-secondary h-full"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-3/4"></div>
+<div class="w-1 bg-secondary h-2/3"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-3/4"></div>
+<div class="w-1 bg-secondary h-2/3"></div>
+<div class="w-1 bg-secondary h-full"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+<div class="w-1 bg-secondary h-4/5"></div>
+<div class="w-1 bg-secondary h-full"></div>
+<div class="w-1 bg-secondary h-1/2"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-mono uppercase border-t border-outline-variant pt-4">
+<span>Hard Grooves</span>
+<span>05:12</span>
+</div>
+</div>
+</div>
+</section> -->
+<!-- GALLERY Section -->
+<section class="py-24 bg-surface-container-low border-y-4 border-primary" id="GALLERY">
+<div class="px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-white uppercase mb-16 italic underline decoration-secondary decoration-8 underline-offset-8">VISUAL LOGS</h2>
+<div class="masonry">
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" src="assets/yo/1.jpg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-secondary grayscale hover:grayscale-0 transition-all duration-500" data-alt="A gritty action shot of a DJ with focused intensity, hands on a mixing console. The scene is illuminated by strobe lights and laser beams in a dark club environment. The visual style is grainy and high-contrast, echoing a raw underground music aesthetic with vibrant pink and neon green lighting effects." src="assets/PLAYING/mainradio2.jpg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-primary grayscale hover:grayscale-0 transition-all duration-500" data-alt="An expansive view of an industrial venue packed with a dancing crowd under massive projection screens. The atmosphere is heavy with smoke and saturated with deep blue and neon pink lighting. This high-fidelity shot captures the massive scale of an electronic music event, featuring industrial concrete textures and technical stage rigging." src="assets/PLAYING/mainradio3.jpg"/>
+</div>
+    <div class="mb-6 break-inside-avoid">
+    <img class="w-full border-2 border-secondary grayscale hover:grayscale-0 transition-all duration-500" src="assets/yo/4.jpg" alt="MADSKILLS Takeover poster" />
+    </div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" data-alt="A close-up shot of professional audio equipment, including turntables and mixers, with neon green LED lights reflecting off the metal surfaces. The background is a dark, blurry nightlife setting. The image emphasizes the technical precision and industrial beauty of modern DJ tools in a high-contrast, edgy aesthetic." src="assets/PLAYING/octava.PNG"/>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FLYERS Section -->
+<section class="py-24 bg-surface-container-low border-y-4 border-primary" id="FLYERS">
+<div class="px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-white uppercase mb-16 italic underline decoration-secondary decoration-8 underline-offset-8">FLYERS LOGS</h2>
+<div class="masonry">
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" src="assets/flyers/hexane.jpeg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-secondary grayscale hover:grayscale-0 transition-all duration-500" data-alt="A gritty action shot of a DJ with focused intensity, hands on a mixing console. The scene is illuminated by strobe lights and laser beams in a dark club environment. The visual style is grainy and high-contrast, echoing a raw underground music aesthetic with vibrant pink and neon green lighting effects." src="assets/flyers/mads2.jpeg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-primary grayscale hover:grayscale-0 transition-all duration-500" data-alt="An expansive view of an industrial venue packed with a dancing crowd under massive projection screens. The atmosphere is heavy with smoke and saturated with deep blue and neon pink lighting. This high-fidelity shot captures the massive scale of an electronic music event, featuring industrial concrete textures and technical stage rigging." src="assets/flyers/mads.jpeg"/>
+</div>
+    <div class="mb-6 break-inside-avoid">
+    <img class="w-full border-2 border-secondary grayscale hover:grayscale-0 transition-all duration-500" src="assets/flyers/noixe.jpeg" alt="MADSKILLS Takeover poster" />
+    </div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" data-alt="A close-up shot of professional audio equipment, including turntables and mixers, with neon green LED lights reflecting off the metal surfaces. The background is a dark, blurry nightlife setting. The image emphasizes the technical precision and industrial beauty of modern DJ tools in a high-contrast, edgy aesthetic." src="assets/flyers/madross.jpeg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" src="assets/flyers/obpo.jpeg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" src="assets/flyers/noid.jpeg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" src="assets/flyers/reisen.jpeg"/>
+</div>
+<div class="mb-6 break-inside-avoid">
+<img class="w-full border-2 border-white grayscale hover:grayscale-0 transition-all duration-500" src="assets/flyers/ussuals.jpeg"/>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-24 overflow-hidden border-y-4 border-secondary" id="B2B">
+<div class="absolute inset-0 z-0">
+<img alt="B2B Performance" class="w-full h-full object-cover grayscale opacity-40" src="assets/B2B/IMG_9463.JPG"/>
+
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-display-xl text-6xl md:text-8xl text-primary glitch-text uppercase mb-8 leading-none">
+          SYNERGY // B2B
+        </h2>
+<p class="text-xl md:text-2xl font-bold uppercase mb-12 max-w-xl border-l-8 border-secondary p-6 bg-surface/60 backdrop-blur-sm">
+Donde las frecuencias se encuentran y el ruido cobra vida.
+        </p>
+<div class="flex flex-wrap gap-6">
+<!-- <button class="border-4 border-secondary text-secondary px-10 py-4 font-headline-lg text-2xl uppercase hover:bg-secondary hover:text-black transition-all neo-brutal-shadow">
+            VIEW COLLABS
+          </button>
+<button class="border-4 border-primary text-primary px-10 py-4 font-headline-lg text-2xl uppercase hover:bg-primary hover:text-black transition-all neo-brutal-shadow-pink">
+            REQUEST RIDER
+          </button> -->
+          
+</div>
+                <div class="mt-6 p-0 border-2 border-secondary bg-surface-container-highest text-on-surface-variant w-full max-w-sm neo-brutal-shadow">
+                    <div class="px-4 pt-3">
+                      <h3 class="font-label-mono uppercase text-xs text-secondary mb-2">B2B DJs</h3>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <ul class="space-y-3">
+                            <li><a class="text-white text-lg font-bold hover:underline" href="https://instagram.com/mala.dum.dum" target="_blank" rel="noopener noreferrer">@mala.dum.dum</a></li>
+                            <li><a class="text-white text-lg font-bold hover:underline" href="https://instagram.com/albertocasas.wav" target="_blank" rel="noopener noreferrer">@albertocasas.wav</a></li>
+                            <li><a class="text-white text-lg font-bold hover:underline" href="https://instagram.com/elguerramusic" target="_blank" rel="noopener noreferrer">@elguerramusic</a></li>
+                        </ul>
+                    </div>
+                </div>
+</div>
+<div class="hidden md:block">
+<div class="border-8 border-primary p-2 rotate-3 hover:rotate-0 transition-transform duration-500">
+<img alt="B2B Detail" class="w-full grayscale hover:grayscale-0 transition-all" src="assets/B2B/IMG_9463.JPG"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PRESS Section -->
+<!-- <section class="py-24 px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase mb-12">DISCOURSE</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-highest p-8 border-t-4 border-secondary hover:invert transition-all duration-300">
+<p class="font-label-mono text-secondary mb-4 uppercase">Mixmag // 2023</p>
+<p class="text-xl font-bold uppercase italic mb-6">"NEON PULSE is the sonic equivalent of a riot in a server room."</p>
+<div class="w-12 h-1 bg-secondary"></div>
+</div>
+<div class="bg-surface-container-highest p-8 border-t-4 border-primary hover:invert transition-all duration-300">
+<p class="font-label-mono text-primary mb-4 uppercase">Resident Advisor // 2024</p>
+<p class="text-xl font-bold uppercase italic mb-6">"A masterclass in industrial tension and cathartic release."</p>
+<div class="w-12 h-1 bg-primary"></div>
+</div>
+<div class="bg-surface-container-highest p-8 border-t-4 border-secondary hover:invert transition-all duration-300">
+<p class="font-label-mono text-secondary mb-4 uppercase">DJ Mag // 2024</p>
+<p class="text-xl font-bold uppercase italic mb-6">"The most vital presence in the warehouse circuit today."</p>
+<div class="w-12 h-1 bg-secondary"></div>
+</div>
+</div>
+</section> -->
+<!-- CONTACT Section -->
+<section class="py-24 bg-primary text-black" id="CONTACT">
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-16">
+<div>
+<h2 class="font-display-xl text-6xl uppercase leading-none mb-8">INICIAR CONEXION</h2>
+<p class="text-2xl font-bold uppercase mb-12 max-w-md">BOOKINGS, COLABORACIONES, PREGUNTAS....</p>
+<div class="flex gap-8">
+<a class="bg-black text-primary px-8 py-4 uppercase text-sm font-bold tracking-[0.24em] hover:bg-black/90 transition-colors" href="mailto:danami.dj@gmail.com">danami.dj@gmail.com</a>
+</div>
+</div>
+<!-- <form class="flex flex-col gap-8">
+<div class="border-b-4 border-black pb-2">
+<label class="font-label-mono text-xs uppercase block mb-1">Agent_Name</label>
+<input class="bg-transparent border-none w-full p-0 focus:ring-0 text-2xl font-bold placeholder:text-black/30" placeholder="IDENTIFY YOURSELF" type="text"/>
+</div>
+<div class="border-b-4 border-black pb-2">
+<label class="font-label-mono text-xs uppercase block mb-1">Inquiry_Type</label>
+<select class="bg-transparent border-none w-full p-0 focus:ring-0 text-2xl font-bold uppercase cursor-pointer">
+<option>Booking Request</option>
+<option>Press Opportunity</option>
+<option>General Intel</option>
+</select>
+</div>
+<div class="border-b-4 border-black pb-2">
+<label class="font-label-mono text-xs uppercase block mb-1">Transmission</label>
+<textarea class="bg-transparent border-none w-full p-0 focus:ring-0 text-2xl font-bold placeholder:text-black/30 h-24 resize-none" placeholder="YOUR MESSAGE..."></textarea>
+</div>
+<button class="bg-black text-primary px-10 py-6 font-headline-lg text-2xl uppercase hover:bg-black/90 transition-colors self-start">
+                        SEND SIGNAL
+                    </button>
+</form> -->
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-surface-container-lowest border-t-4 border-on-secondary-fixed-variant flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full">
+<div class="font-headline-lg text-headline-lg text-secondary uppercase mb-8 md:mb-0">DANAMI</div>
+<div class="flex flex-col items-center md:items-end gap-4">
+<nav class="flex gap-8 font-label-mono text-label-mono uppercase">
+<a class="text-on-surface-variant hover:text-secondary hover:italic transition-all" href="https://soundcloud.com/d4nami">Soundcloud</a>
+<a class="text-on-surface-variant hover:text-secondary hover:italic transition-all" href="https://www.instagram.com/d4nami/">Instagram</a>
+<a class="text-on-surface-variant hover:text-secondary hover:italic transition-all" href="https://www.youtube.com/@D4NAMI">Youtube</a>
+</nav>
+<p class="font-label-mono text-label-mono opacity-50 uppercase tracking-widest text-center md:text-right">
+                    ©2026 ALL RIGHTS RESERVED. DISENADO POR CUE PORTALS. [ // SYSTEM_STATUS: OPERATIONAL ]
+                </p>
+</div>
+</footer>
+</main>
+<script>
+        // Simple scroll reveal for the side nav items
+        document.querySelectorAll('aside nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('aside nav a').forEach(l => {
+                    l.classList.remove('bg-secondary', 'text-on-secondary-container', 'p-2');
+                    l.classList.add('text-on-surface-variant');
+                });
+                link.classList.add('bg-secondary', 'text-on-secondary-container', 'p-2');
+                link.classList.remove('text-on-surface-variant');
+            });
+        });
+
+        // Basic cursor or micro-interaction logic can be added here
+        document.addEventListener('mousemove', (e) => {
+            // Potential for atmospheric particle effects or trailing highlights
+        });
+
+        // Lightweight carousel initializer (ensures first slide visible and controls work)
+        (function(){
+            const carousel = document.getElementById('bio-carousel');
+            if (!carousel) return;
+            const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+            const nextBtn = document.getElementById('carousel-next');
+            const prevBtn = document.getElementById('carousel-prev');
+            const dotsContainer = document.getElementById('carousel-dots');
+            if (!slides.length) return;
+
+            let idx = 0;
+            function show(i){
+                slides.forEach((s,n)=> s.style.opacity = n===i ? '1' : '0');
+                // update dots
+                if (dotsContainer && dotsContainer.children.length === slides.length){
+                    Array.from(dotsContainer.children).forEach((d,n)=> d.classList.toggle('bg-white', n===i));
+                }
+            }
+
+            function next(){ idx = (idx+1) % slides.length; show(idx); }
+            function prev(){ idx = (idx-1+slides.length) % slides.length; show(idx); }
+
+            // create dots if needed
+            if (dotsContainer && !dotsContainer.children.length){
+                slides.forEach((_,i)=>{
+                    const b = document.createElement('button');
+                    b.className = 'w-3 h-3 rounded-full bg-white/40';
+                    b.addEventListener('click', ()=>{ idx = i; show(idx); resetTimer(); });
+                    dotsContainer.appendChild(b);
+                });
+            }
+
+            nextBtn && nextBtn.addEventListener('click', ()=>{ next(); resetTimer(); });
+            prevBtn && prevBtn.addEventListener('click', ()=>{ prev(); resetTimer(); });
+
+            let timer = setInterval(next, 4000);
+            function resetTimer(){ clearInterval(timer); timer = setInterval(next, 4000); }
+
+            show(idx);
+        })();
+    </script>
+</body></html>
